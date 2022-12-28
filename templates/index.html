@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://overpass-30e2.kxcdn.com/overpass.css">
+    <link rel="stylesheet" type="text/css" href="https://overpass-30e2.kxcdn.com/overpass-mono.css">
+    <link rel="icon" href="http://faperta.ulm.ac.id/id/wp-content/uploads/2016/05/cropped-Logo-Unlam-32x32.png" sizes="32x32" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
+    <script src="http://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+
+    <style>
+        body {
+            width: 80%;
+            margin:auto;
+        }
+        .header {
+            background-color: orange;
+            border-style: none;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: center;
+            font-family: "Overpass";
+        }
+        .header img {
+            width: 80px;
+            height: 80px;
+            margin: 10px 80px;
+        }
+        .header p {
+            margin: 10px auto;
+            font-family: "overpass-mono";
+        }
+
+	.button-section {
+	    margin: 20px 0px;
+	}
+
+    </style>
+<script>
+        
+        var pathname = $(location).attr('pathname')
+        if (pathname = '/') {
+            $(document).ready( function () {
+                $('#myTable').DataTable( {
+		dom: 'Bfrtip',
+		buttons: [
+			'copy','csv','excel','pdf','print'
+			]
+		});
+                $(".tabel_user").show("fast");
+                // $(".tabel_absensi").hide("fast");
+            } );
+            // document.querySelector('.tabel_user').style.display = 'block';
+            // document.querySelector('.tabel_absensi').style.display = 'none';
+   	} 
+</script>
+	<title>Daftar User</title>
+</head>
+<body>
+<div class="header">
+    <img src="static/images/logoulm.png" alt="logoulm.png" />
+    <div class="title"><h2>Daftar Absensi <br>Universitas Lambung Mangkurat</h2></div>
+    <img src="static/images/logoulm.png" alt="logoulm.png" />
+    <p>Jl. Brigjen Jalan Hasan Basri, Pangeran, Kec. Banjarmasin Utara, Kota Banjarmasin, Kalimantan Selatan 70123</p>
+</div>
+<div class="tabel_user">
+    <table id="myTable" class="cell-border compact hover">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Nama</th>
+            <th>Jabatan</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<div class="button-section">
+    <button type="button"><a href="/">Daftar User</a></button>
+    <button type="button"><a href="/absensi">Absensi</a></button>
+</div>
+</body>
+</html>
